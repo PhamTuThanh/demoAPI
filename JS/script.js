@@ -10,7 +10,6 @@ mealList.addEventListener('click', getMealRecipe);
 recipeCloseBtn.addEventListener('click', () => {
     mealDetailsContent.parentElement.classList.remove('showRecipe');
 });
-// Trong hàm addFavouriteButtons
 
 function addFavouriteButtons() { 
     const mealItems = document.querySelectorAll('.meal-item'); 
@@ -47,13 +46,11 @@ function toggleFavourite(mealId, button, mealName, mealImg) {
         button.textContent = 'Added';
     }
     
-    // Lưu lại danh sách yêu thích
     localStorage.setItem('favourites', JSON.stringify(favourites));
 }
-// get meal list that matches with the ingredients
 function getMealList(){
     let searchInputTxt = document.getElementById('search-input').value.trim();
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
+    fetch(`https:/www.themealdb.com/api/json/v1/1/search.php?s=${searchInputTxt}`)
     .then(response => response.json())
     .then(data => {
         let html = "";
@@ -72,12 +69,11 @@ function getMealList(){
                     </div>
                 `;
             });
-            mealList.classList.remove('notFound');
+            mealList.classList.remove('notFound');        
         } else{
-            html = "Sorry, we didn't find any meal!";
+            html = "NOT FOUND";
             mealList.classList.add('notFound');
         }
-
         mealList.innerHTML = html;
         addFavouriteButtons();
     });

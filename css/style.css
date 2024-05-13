@@ -5,8 +5,8 @@
     box-sizing: border-box;
 }
 :root{
-    --tenne-tawny: #c4f807;
-    --tenne-tawny-dark: #f39609;
+    --tenne-tawny-dark: #424874;
+    --tenne-tawny: #A8D8EA;
 }
 body{
     font-weight: 300;
@@ -33,7 +33,7 @@ body{
 /* */
 .container{
     min-height: 100vh;
-    background-color: black;
+    background-color: #DCD6F7;
 
 }
 .meal-wrapper{
@@ -42,7 +42,8 @@ body{
     padding:2rem;
     background: #ffff;
     text-align: center;
-    background-color: black;
+    background-color: #F4EEFF;
+
 }
 .meal-search{
     margin: 2rem 0;
@@ -139,6 +140,9 @@ body{
 .recipe-btn:hover{
     background: var(--tenne-tawny-dark);
 }
+.add-btn:hover .btn-remove:hover{
+    background: var(--tenne-tawny-dark);
+}
 .add-btn{
     text-decoration: none;
     color: #fff;
@@ -163,7 +167,7 @@ body{
 .btn-remove{
     text-decoration: none;
     color: #fff;
-    background: red;
+    background: #FF9494;
     font-weight: 500;
     font-size: 1.1rem;
     padding: 0.75rem 0;
@@ -232,7 +236,7 @@ body{
     font-size: 1.8rem;
     background: #fff;
     border: none;
-    width: 35px;
+    width: 15px;
     height: 35px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -372,7 +376,7 @@ thead {
     color: #29ABE0;
 }
 .image{
-    width: 45px;
+    width: 30px;
     height: 30px;
 }
 .is-favorite {

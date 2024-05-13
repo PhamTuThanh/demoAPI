@@ -2,8 +2,9 @@ const searchBtn = document.getElementById('search-btn');
 const mealList = document.getElementById('meal');
 const mealDetailsContent = document.querySelector('.meal-details-content');
 const recipeCloseBtn = document.getElementById('recipe-close-btn');
+const removeAll = document.getElementById('remove-all')
 
-// event listeners
+removeAll.addEventListener('click', getremoveAll);
 searchBtn.addEventListener('click', getMealList);
 mealList.addEventListener('click', getMealRecipe);
 recipeCloseBtn.addEventListener('click', () => {
@@ -11,19 +12,19 @@ recipeCloseBtn.addEventListener('click', () => {
 });
 document.addEventListener('DOMContentLoaded', loadFavourites);
 
-function addFavouriteButtons() { 
-    const mealItems = document.querySelectorAll('.meal-item'); 
-    mealItems.forEach(item => { 
-        const mealId = item.dataset.id; 
-        const mealName = item.querySelector('.meal-name h3').innerText;
-        const mealImg = item.querySelector('.meal-img img').src;
-        const favBtn = item.querySelector('.fav-btn'); 
-        // ...
-        favBtn.addEventListener('click', function() { 
-            toggleFavourite(mealId, favBtn, mealName, mealImg); 
-        }); 
-    }); 
-}
+// function addFavouriteButtons() { 
+//     const mealItems = document.querySelectorAll('.meal-item'); 
+//     mealItems.forEach(item => { 
+//         const mealId = item.dataset.id; 
+//         const mealName = item.querySelector('.meal-name h3').innerText;
+//         const mealImg = item.querySelector('.meal-img img').src;
+//         const favBtn = item.querySelector('.fav-btn'); 
+//         // ...
+//         favBtn.addEventListener('click', function() { 
+//             toggleFavourite(mealId, favBtn, mealName, mealImg); 
+//         }); 
+//     }); 
+// }
 
 function loadFavourites() { 
 
@@ -52,14 +53,12 @@ function loadFavourites() {
         });
     } else {
         // Nếu 'favourites' là rỗng, hiển thị thông báo không tìm thấy món ăn yêu thích
-        mealList.innerHTML = "<p>You have no favourite meals saved. Find some meals and add them to your favourites!</p>";
+        mealList.innerHTML = "<p>LIST HOLLOW</p>";
     }
-
-    // Cuối cùng, gắn sự kiện cho các nút yêu thích mới
-    checkFavouriteButtons();
+    removeFavorite();
 }
 
-function checkFavouriteButtons() {  
+function getremoveFavorite() {  
     // Chọn tất cả các nút yêu thích trong danh sách món ăn và thêm sự kiện click 
     const favButtons = document.querySelectorAll('.meal-item .btn-remove');
     favButtons.forEach(btn => {
@@ -67,18 +66,22 @@ function checkFavouriteButtons() {
             const mealItem = btn.closest('.meal-item');
             const mealId = mealItem.dataset.id;
             toggleFavourite(mealId, btn);
-            mealItem.remove(); // Xóa element của món ăn ra khỏi DOM sau khi xóa ra khỏi localStorage
+            mealItem.remove();
         });
     });
+}
+function getremoveAll(){
+    let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
+    localStorage.clear('favourites', JSON.stringify(favourites));
+    loadFavourites();
 }
 function toggleFavourite(mealId, button) { 
     let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
     const index = favourites.findIndex(item => item.id === mealId);
-    // Không cần kiểm tra isFavourite ở đây, vì chức năng này là xóa mục yêu thích
     if (index > -1) {
         favourites.splice(index, 1);
         localStorage.setItem('favourites', JSON.stringify(favourites));
-        loadFavourites(); // Tải lại danh sách yêu thích sau khi xóa
+        loadFavourites();
     } 
 }
 //receip meal
