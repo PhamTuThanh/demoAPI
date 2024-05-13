@@ -1,4 +1,3 @@
-
 const searchBtn = document.getElementById('search-btn');
 const mealList = document.getElementById('meal');
 const mealDetailsContent = document.querySelector('.meal-details-content');
@@ -10,7 +9,7 @@ mealList.addEventListener('click', getMealRecipe);
 recipeCloseBtn.addEventListener('click', () => {
     mealDetailsContent.parentElement.classList.remove('showRecipe');
 });
-// Trong hàm addFavouriteButtons
+document.addEventListener('DOMContentLoaded', loadFavourites);
 
 function addFavouriteButtons() { 
     const mealItems = document.querySelectorAll('.meal-item'); 
@@ -26,31 +25,63 @@ function addFavouriteButtons() {
     }); 
 }
 
+function loadFavourites() { 
 
-function toggleFavourite(mealId, button, mealName, mealImg) {
-    let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
-    
-    const index = favourites.findIndex(item => item.id === mealId); //để lấy vị trí
-    const isFavourite = index > -1;
-    
-    if(isFavourite) {
-        favourites.splice(index, 1);   //xóa 1 phần từ ở vị trí index
-        button.classList.remove('fav');
-        button.textContent = 'Add';
-    } else {
-        favourites.push({
-            id: mealId,
-            name: mealName,
-            img: mealImg
+    let favourites = JSON.parse(localStorage.getItem('favourites')) || []; 
+    const mealList = document.getElementById('meal'); // Đảm bảo bạn có element này trong HTML của bạn
+
+    // Xóa nội dung hiện tại của mealList
+    mealList.innerHTML = '';
+
+    // Kiểm tra nếu 'favourites' không rỗng
+    if (favourites.length > 0) {
+        // Duyệt qua từng phần tử trong mảng 'favourites'
+        favourites.forEach(favourite => {
+            // Tạo và thêm HTML cho mỗi món yêu thích vào mealList
+            mealList.innerHTML += `
+                <div class="meal-item" data-id="${favourite.id}">
+                    <div class="meal-img">
+                        <img src="${favourite.img}" alt="${favourite.name}">
+                    </div>
+                    <div class="meal-name">
+                        <h3>${favourite.name}</h3>
+                        <button class="fav-btn fav btn-remove">Remove</button> 
+                    </div>
+                </div>
+            `;
         });
-        button.classList.add('fav');
-        button.textContent = 'Added';
+    } else {
+        // Nếu 'favourites' là rỗng, hiển thị thông báo không tìm thấy món ăn yêu thích
+        mealList.innerHTML = "<p>You have no favourite meals saved. Find some meals and add them to your favourites!</p>";
     }
-    
-    // Lưu lại danh sách yêu thích
-    localStorage.setItem('favourites', JSON.stringify(favourites));
+
+    // Cuối cùng, gắn sự kiện cho các nút yêu thích mới
+    checkFavouriteButtons();
 }
-// get meal list that matches with the ingredients
+
+function checkFavouriteButtons() {  
+    // Chọn tất cả các nút yêu thích trong danh sách món ăn và thêm sự kiện click 
+    const favButtons = document.querySelectorAll('.meal-item .btn-remove');
+    favButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const mealItem = btn.closest('.meal-item');
+            const mealId = mealItem.dataset.id;
+            toggleFavourite(mealId, btn);
+            mealItem.remove(); // Xóa element của món ăn ra khỏi DOM sau khi xóa ra khỏi localStorage
+        });
+    });
+}
+function toggleFavourite(mealId, button) { 
+    let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
+    const index = favourites.findIndex(item => item.id === mealId);
+    // Không cần kiểm tra isFavourite ở đây, vì chức năng này là xóa mục yêu thích
+    if (index > -1) {
+        favourites.splice(index, 1);
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+        loadFavourites(); // Tải lại danh sách yêu thích sau khi xóa
+    } 
+}
+//receip meal
 function getMealList(){
     let searchInputTxt = document.getElementById('search-input').value.trim();
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
@@ -67,7 +98,7 @@ function getMealList(){
                         <div class = "meal-name">
                             <h3>${meal.strMeal}</h3>
                             <a href = "#" class = "recipe-btn">Get Recipe</a>
-                            <button class = "fav-btn add-btn">Add</button>
+                            <button class = "fav-btn btn-remove">Remove</button>
                         </div>
                     </div>
                 `;
@@ -84,7 +115,6 @@ function getMealList(){
 }
 
 
-// get recipe of the meal
 function getMealRecipe(e){
     e.preventDefault();
     if(e.target.classList.contains('recipe-btn')){
@@ -95,7 +125,6 @@ function getMealRecipe(e){
     }
 }
 
-// create a modal
 function mealRecipeModal(meal){
     console.log(meal);
     meal = meal[0];
@@ -116,4 +145,3 @@ function mealRecipeModal(meal){
     mealDetailsContent.innerHTML = html;
     mealDetailsContent.parentElement.classList.add('showRecipe');
 }
-

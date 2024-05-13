@@ -5,8 +5,8 @@
     box-sizing: border-box;
 }
 :root{
-    --tenne-tawny: #01ca98;
-    --tenne-tawny-dark: #016912;
+    --tenne-tawny: #c4f807;
+    --tenne-tawny-dark: #f39609;
 }
 body{
     font-weight: 300;
@@ -33,6 +33,8 @@ body{
 /* */
 .container{
     min-height: 100vh;
+    background-color: black;
+
 }
 .meal-wrapper{
     max-width: 1280px;
@@ -40,6 +42,7 @@ body{
     padding:2rem;
     background: #ffff;
     text-align: center;
+    background-color: black;
 }
 .meal-search{
     margin: 2rem 0;
@@ -135,6 +138,48 @@ body{
 }
 .recipe-btn:hover{
     background: var(--tenne-tawny-dark);
+}
+.add-btn{
+    text-decoration: none;
+    color: #fff;
+    background: var(--tenne-tawny-dark);
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+.btn-remove{
+    text-decoration: none;
+    color: #fff;
+    background: red;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
 }
 /*meal detail*/
 .meal-details{
@@ -293,23 +338,63 @@ body{
 }
 /* Cart */
 
-
-@media screen and (min-width:768px) {
-    #meal1{
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        gap: 2rem;
-    }
-    .meal-item{
-        margin: 0;
-    }
-    .meal-details{
-        width: 700px;
-    }
-
+.navbar-brand {
+    font-size: 1.6rem;
 }
-@media screen and (min-width:992px){
-    #meal1{
-        grid-template-columns: repeat(3, 1fr);
-    }
+.icon {
+    color: #c8ff00;
 }
+.sitename {
+    color:white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+}
+.sitename span {
+    color: #e20000!important;
+    font-weight: 700;
+}
+thead {
+    color: white;
+}
+.card {
+    position: relative;
+}
+.card .favorite-btn {
+    position: absolute;
+    right: -18px;
+    top: 18px;
+    background-color: white;
+    width: 35px!important;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 22px;
+    padding-left: 10px;
+    color: #29ABE0;
+}
+.image{
+    width: 45px;
+    height: 30px;
+}
+.is-favorite {
+    background-color:#29ABE0!important;
+    color: white!important;
+}
+
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 1.6rem;
+}
+.card-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+.btn {
+    width:100%;
+    right: -100px;
+}
+footer p{
+    color:white!important;
+} 
