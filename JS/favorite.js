@@ -12,33 +12,28 @@ recipeCloseBtn.addEventListener('click', () => {
 });
 document.addEventListener('DOMContentLoaded', loadFavourites);
 
-// function addFavouriteButtons() { 
-//     const mealItems = document.querySelectorAll('.meal-item'); 
-//     mealItems.forEach(item => { 
-//         const mealId = item.dataset.id; 
-//         const mealName = item.querySelector('.meal-name h3').innerText;
-//         const mealImg = item.querySelector('.meal-img img').src;
-//         const favBtn = item.querySelector('.fav-btn'); 
-//         // ...
-//         favBtn.addEventListener('click', function() { 
-//             toggleFavourite(mealId, favBtn, mealName, mealImg); 
-//         }); 
-//     }); 
-// }
-
+function addFavouriteButtons() { 
+    const mealItems = document.querySelectorAll('.meal-item'); 
+    mealItems.forEach(item => { 
+        const mealId = item.dataset.id; 
+        const mealName = item.querySelector('.meal-name h3').innerText;
+        const mealImg = item.querySelector('.meal-img img').src;
+        const favBtn = item.querySelector('.fav-btn'); 
+        // ...
+        favBtn.addEventListener('click', function() { 
+            toggleFavourite(mealId, favBtn, mealName, mealImg); 
+        }); 
+    }); 
+}
 function loadFavourites() { 
 
     let favourites = JSON.parse(localStorage.getItem('favourites')) || []; 
-    const mealList = document.getElementById('meal'); // Đảm bảo bạn có element này trong HTML của bạn
+    const mealList = document.getElementById('meal'); 
 
-    // Xóa nội dung hiện tại của mealList
     mealList.innerHTML = '';
 
-    // Kiểm tra nếu 'favourites' không rỗng
     if (favourites.length > 0) {
-        // Duyệt qua từng phần tử trong mảng 'favourites'
         favourites.forEach(favourite => {
-            // Tạo và thêm HTML cho mỗi món yêu thích vào mealList
             mealList.innerHTML += `
                 <div class="meal-item" data-id="${favourite.id}">
                     <div class="meal-img">
@@ -46,19 +41,17 @@ function loadFavourites() {
                     </div>
                     <div class="meal-name">
                         <h3>${favourite.name}</h3>
+                        <a href = "#" class = "recipe-btn">Get Recipe</a>
                         <button class="fav-btn fav btn-remove">Remove</button> 
                     </div>
                 </div>
             `;
         });
-    } else {
-        // Nếu 'favourites' là rỗng, hiển thị thông báo không tìm thấy món ăn yêu thích
-        mealList.innerHTML = "<p>LIST HOLLOW</p>";
     }
     removeFavorite();
 }
 
-function getremoveFavorite() {  
+function removeFavorite() {  
     // Chọn tất cả các nút yêu thích trong danh sách món ăn và thêm sự kiện click 
     const favButtons = document.querySelectorAll('.meal-item .btn-remove');
     favButtons.forEach(btn => {
