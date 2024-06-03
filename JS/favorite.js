@@ -4,7 +4,7 @@ const mealDetailsContent = document.querySelector('.meal-details-content');
 const recipeCloseBtn = document.getElementById('recipe-close-btn');
 const removeAll = document.getElementById('remove-all')
 
-removeAll.addEventListener('click', getremoveAll);
+removeAll.addEventListener('click', getRemoveAll);
 searchBtn.addEventListener('click', getMealList);
 mealList.addEventListener('click', getMealRecipe);
 recipeCloseBtn.addEventListener('click', () => {
@@ -52,7 +52,6 @@ function loadFavourites() {
 }
 
 function removeFavorite() {  
-    // Chọn tất cả các nút yêu thích trong danh sách món ăn và thêm sự kiện click 
     const favButtons = document.querySelectorAll('.meal-item .btn-remove');
     favButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -63,7 +62,7 @@ function removeFavorite() {
         });
     });
 }
-function getremoveAll(){
+function getRemoveAll(){
     let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
     localStorage.clear('favourites', JSON.stringify(favourites));
     loadFavourites();

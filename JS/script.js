@@ -18,58 +18,64 @@ function addFavouriteButtons() {
         const mealName = item.querySelector('.meal-name h3').innerText;
         const mealImg = item.querySelector('.meal-img img').src;
         const favBtn = item.querySelector('.fav-btn'); 
-        // ...
         favBtn.addEventListener('click', function() { 
-            toggleFavourite(mealId, favBtn, mealName, mealImg); 
+            toggleFavourite(mealId, favBtn, mealName, mealImg);
         }); 
     }); 
+    
 }
 
 
 function toggleFavourite(mealId, button, mealName, mealImg) {
     let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
-    
-    const index = favourites.findIndex(item => item.id === mealId); //để lấy vị trí
+    const index = favourites.findIndex(item => item.id === mealId);
     const isFavourite = index > -1;
     
     if(isFavourite) {
-        favourites.splice(index, 1);   //xóa 1 phần từ ở vị trí index
+    
+        favourites.splice(index, 1);
         button.classList.remove('fav');
-        button.textContent = 'Add';
+        button.innerHTML = '<i class="fa-regular fa-bookmark"></i>'; // Icon cho "không yêu thích"
+       
     } else {
         favourites.push({
-            id: mealId,
-            name: mealName,
+            id: mealId, 
+            name: mealName, 
             img: mealImg
         });
         button.classList.add('fav');
-        button.textContent = 'Added';
+        button.innerHTML = '<i class="fa-solid fa-bookmark"></i>'; // Icon cho "yêu thích"
     }
-    
+     
     localStorage.setItem('favourites', JSON.stringify(favourites));
 }
+
+
 function getMealList(){
     let searchInputTxt = document.getElementById('search-input').value.trim();
-    fetch(`https:/www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
     .then(response => response.json())
     .then(data => {
         let html = "";
         if(data.meals){
             data.meals.forEach(meal => {
+               
                 html += `
                     <div class = "meal-item" data-id = "${meal.idMeal}">
                         <div class = "meal-img">
                             <img src = "${meal.strMealThumb}" alt = "food">
                         </div>
                         <div class = "meal-name">
-                            <h3>${meal.strMeal}</h3>
+                        <h3>${meal.strMeal}</h3>
+                        </div>
+                        <div>
                             <a href = "#" class = "recipe-btn">Get Recipe</a>
-                            <button class = "fav-btn add-btn">Add</button>
+                            <i class="fa-regular fa-bookmark fav-btn add-btn removeIcon"></i>
                         </div>
                     </div>
                 `;
             });
-            mealList.classList.remove('notFound');        
+            mealList.classList.remove('notFound');         
         } else{
             html = "NOT FOUND";
             mealList.classList.add('notFound');
@@ -80,7 +86,6 @@ function getMealList(){
 }
 
 
-// get recipe of the meal
 function getMealRecipe(e){
     e.preventDefault();
     if(e.target.classList.contains('recipe-btn')){
@@ -90,13 +95,13 @@ function getMealRecipe(e){
         .then(data => mealRecipeModal(data.meals));
     }
 }
-
 // create a modal
 function mealRecipeModal(meal){
     console.log(meal);
     meal = meal[0];
     let html = `
         <h2 class = "recipe-title">${meal.strMeal}</h2>
+        <h2>${meal.strArea}</h2>
         <p class = "recipe-category">${meal.strCategory}</p>
         <div class = "recipe-instruct">
             <h3>Instructions:</h3>

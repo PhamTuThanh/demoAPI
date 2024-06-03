@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,15 @@
 </head>
 <body>
     <div class="container">
+        <header style="display: flex; justify-content: center; align-items: center;">
+            <a href="/" class="logo"> 
+                <img src="logo-light.svg" width="156" height="32" alt="Cook.io" class="logo-light"> 
+            </a> 
+            <a href="favorite.html" class="btn btn-primary" style="margin: 0 auto; margin-left: 800px; margin-right: 50px; text-align: center;"> 
+                <i class="fa-regular fa-floppy-disk" style="height: 20px;"></i> 
+                <span class="span">Save Recipes</span> 
+            </a> 
+        </header>
         <div class="meal-wrapper">
             <div class="meal-search">
                 <h2 class="tittle">Fine Meals For Your Ingredient</h2>
@@ -23,21 +32,18 @@
                 <button type="submit" class="search-btn btn" id="search-btn">
                     <i class="fas fa-search"></i>
                 </button>
-                <div style=" margin-left: 50px;">
-                    <a href="favorite.html">
-                           <img style="height: 45px; width: 60px;" src="heart-black.png" alt="">
-                    </a>
-                </div>
-            
-
-
-
+                 <!-- <button class="icon-btn has-state removed" aria-label="Add to saved recipes">
+                    <span class="material-symbols-outlined bookmark-add" aria-hidden="true"><i class="fa-solid fa-bookmark"></i></span>
+<span class="material-symbols-outlined bookmark" aria-hidden="true"><i class="fa-regular fa-bookmark"></i></span>
+                 </button> -->
             </div>
             </div>
 
-
+              <!-- <h3 class="title-small">
+                <a href="\" class="card-link">ten</a>
+              </h3> -->
             <div class="meal-result">
-               <h2 class="title">You search results:</h2>
+  
                <div id="meal">
                </div>
             </div>
@@ -58,6 +64,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="JS/script.js"></script> 
+    <script src="JS/theme.js"></script>
     
 </body>
 </html>
