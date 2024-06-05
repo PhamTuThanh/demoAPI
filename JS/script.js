@@ -17,10 +17,10 @@ mealList.addEventListener('click', getMealRecipe);
 recipeCloseBtn.addEventListener('click', () => {
     mealDetailsContent.parentElement.classList.remove('showRecipe');
 });
-button1.addEventListener('click', changeColor1);
-button2.addEventListener('click', changeColor2);
-button3.addEventListener('click', changeColor3);
-button4.addEventListener('click', changeColor4);
+button1.addEventListener('click', changeColor1, resetColor1);
+button2.addEventListener('click', changeColor2, resetColor2);
+button3.addEventListener('click', changeColor3, resetColor3);
+button4.addEventListener('click', changeColor4, resetColor4);
 
 Breakfast.addEventListener('click', BreakfastList);
 Dessert.addEventListener('click', DessertList);
@@ -31,18 +31,52 @@ Starter.addEventListener('click', StarterList);
 function changeColor1(){
     button1.style.color = "var(--primary)";
     button1.style.borderBlockEnd = "2px solid var(--primary)";
+    resetColor4();
+    resetColor2();
+    resetColor3();
 }
 function changeColor2(){
     button2.style.color = "var(--primary)";
     button2.style.borderBlockEnd = "2px solid var(--primary)";
+    resetColor1();
+    resetColor4();
+    resetColor3();
 }
 function changeColor3(){
     button3.style.color = "var(--primary)";
     button3.style.borderBlockEnd = "2px solid var(--primary)";
+    resetColor1();
+    resetColor2();
+    resetColor4();
 }
 function changeColor4(){
     button4.style.color = "var(--primary)";
     button4.style.borderBlockEnd = "2px solid var(--primary)";
+    resetColor1();
+    resetColor2();
+    resetColor3();
+}
+function resetColor1(){
+    button1.style.color="";
+    button1.style.borderBlockEnd="";
+}
+function resetColor2(){
+    button2.style.color="";
+    button2.style.borderBlockEnd="";
+}
+function resetColor3(){
+    button3.style.color="";
+    button3.style.borderBlockEnd="";
+}
+function resetColor4(){
+    button4.style.color="";
+    button4.style.borderBlockEnd="";
+}
+function resetColor(){
+    resetColor1();
+    resetColor2();
+    resetColor3();
+    resetColor4();
 }
 function addFavouriteButtons() { 
     const mealItems = document.querySelectorAll('.meal-item'); 
@@ -232,7 +266,7 @@ function getMealList(){
                         <div class = "meal-name">
                         <h3>${meal.strMeal}</h3>
                         </div>
-                        <div>
+                        <div class = "title-1">
                             <a href = "#" class = "recipe-btn">Get Recipe</a>
                             <i class="fa-regular fa-bookmark fav-btn add-btn "></i>
                         </div>
@@ -245,6 +279,7 @@ function getMealList(){
             mealList.classList.add('notFound');
         }
         mealList.innerHTML = html;
+        resetColor();
         addFavouriteButtons();
     });
 }

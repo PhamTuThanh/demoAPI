@@ -198,7 +198,10 @@ body{
 }
 .meal-name{
     padding: 1.5rem 0.5rem;
-    height: 80px;
+    height: 70px;
+}
+.title-1{
+    height: 60px;
 }
 
 .meal-name h3{
@@ -228,6 +231,14 @@ body{
     margin: 1rem auto;
 }
 .btn-remove{
+    text-decoration: none;
+    color: #000000;  
+    font-size: 0.8rem;
+    padding: 0.75rem 0;
+    width: 75px;
+    margin: 1rem auto;
+}
+.btn-removeAll{
     text-decoration: none;
     color: #000000;
     background: #FF9494;

@@ -41,9 +41,11 @@ function loadFavourites() {
                     </div>
                     <div class="meal-name">
                         <h3>${favourite.name}</h3>
-                        <a href = "#" class = "recipe-btn">Get Recipe</a>
-                        <button class="fav-btn fav btn-remove">Remove</button> 
                     </div>
+                    <div class = "title-1">
+                    <a href = "#" class = "recipe-btn">Get Recipe</a>
+                    <i class="fa-solid fa-trash fav btn-remove"></i>
+                </div>
                 </div>
             `;
         });
@@ -92,8 +94,10 @@ function getMealList(){
                         </div>
                         <div class = "meal-name">
                             <h3>${meal.strMeal}</h3>
+                        </div>
+                        <div class = "title-1">
                             <a href = "#" class = "recipe-btn">Get Recipe</a>
-                            <button class = "fav-btn btn-remove">Remove</button>
+                            <i class="fa-solid fa-trash fav btn-remove"></i>
                         </div>
                     </div>
                 `;
