@@ -615,9 +615,12 @@ main{flex-grow: 1;}
 
 
 /*Header*/
-/*.has-state{
+.has-state{
     position: relative;
     overflow: hidden;
+}
+.navbar-list li ul{
+    list-style-type: none;
 }
 .has-state::after{
     content: "";
@@ -642,7 +645,7 @@ main{flex-grow: 1;}
     'wght' 400,
     'GRAD' 0,
     'opsz' 24;
-} */
+}
 .btn .material-symbols-outlined{
     font-size: 1.8rem;
     text-decoration: none;
@@ -704,8 +707,8 @@ main{flex-grow: 1;}
     flex: 1 0 80px;
 }
 .tab-btn[aria-selected="true"]{
-    color: var(--on-background); /* Màu chữ cho button được chọn */
-    border-block-end: 2px solid var(--primary); /* Gạch chân cho button được chọn */
+    color: var(--on-background);
+    border-block-end: 2px solid var(--primary); 
     border: none;
 }
 .tab-btn:hover {
@@ -716,6 +719,29 @@ main{flex-grow: 1;}
     color: var(--primary);
     border-block-end: 2px solid var(--primary);
 }
+.navbar-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; 
+}
+
+.navbar-list li {
+    display: inline-block;
+    margin-right: 20px; 
+}
+
+
+.navbar-list li:last-child {
+    margin-right: 0; 
+}
+
+.navbar-link {
+    text-decoration: none; 
+    color: inherit;
+}
+
 
 
 
