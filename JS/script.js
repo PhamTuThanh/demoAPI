@@ -294,8 +294,7 @@ function getMealRecipe(e){
         .then(data => mealRecipeModal(data.meals));
     }
 }
-// create a modal
-// Hàm kiểm tra xem một món ăn có trong danh sách yêu thích hay không
+
 function isFavourite(mealId) {
     let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
     return favourites.some(item => item.id === mealId);
