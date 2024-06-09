@@ -198,10 +198,12 @@ body{
 }
 .meal-name{
     padding: 1.5rem 0.5rem;
-    height: 70px;
-}
-.title-1{
     height: 60px;
+}
+.title-1 .recipe-btn{
+    height: 60px;
+    text-align: center;
+    margin-left: 40px;
 }
 
 .meal-name h3{
@@ -694,12 +696,13 @@ main{flex-grow: 1;}
     box-shadow: inset0 -1px 0 var(--outline);
     overflow-x: auto;
     scrollbar-width: none;
-}
+    }
 .tab-list::-webkit-scrollbar{display: none;}
 .tab-btn{
     height: 48px;
     padding-inline: 24px;
     border-block-end: 2px solid transparent;
+    background: #F4EEFF;
     transition: var(--transition-short);
     -webkit-transition: var(--transition-short);
     -moz-transition: var(--transition-short);
