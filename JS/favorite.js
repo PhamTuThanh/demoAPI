@@ -66,7 +66,7 @@ function removeFavorite() {
 function getRemoveAll(){
     let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
     localStorage.clear('favourites', JSON.stringify(favourites));
-    loadFavourites();liog
+    loadFavourites();
 }
 function toggleFavourite(mealId, button) { 
     let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
