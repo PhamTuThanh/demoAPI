@@ -292,20 +292,14 @@ function getMealRecipe(e){
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
         .then(response => response.json())
         .then(data => mealRecipeModal(data.meals));
+        console.log(mealItem.dataset.id);
     }
 }
-
-function isFavourite(mealId) {
-    let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
-    return favourites.some(item => item.id === mealId);
-}
-
 function mealRecipeModal(meal) {
     console.log(meal);
     meal = meal[0];
     let html = `
         <h2 class = "recipe-title">${meal.strMeal}</h2>
-        <h2>${meal.strArea}</h2>
         <p class = "recipe-category">${meal.strCategory}</p>
         <div class = "recipe-instruct">
             <h3>Instructions:</h3>
@@ -319,17 +313,15 @@ function mealRecipeModal(meal) {
         </div>
     `;
     
-    // Điều chỉnh icon bookmark dựa trên tình trạng của món ăn trong danh sách yêu thích
-    let bookmarkIcon = isFavourite(meal.idMeal) ?
-        '<i class="fa-solid fa-bookmark"></i>' : // Nếu món ăn đã là yêu thích
-        '<i class="fa-regular fa-bookmark"></i>'; // Nếu món ăn chưa có trong danh sách yêu thích
 
-    // Thêm bookmark icon vào html
-    html += `
-        <div class="recipe-fav">
-            ${bookmarkIcon}
-        </div>
-    `;
+    // let bookmarkIcon = isFavourite(meal.idMeal) ?
+    //     '<i class="fa-solid fa-bookmark"></i>' : 
+    //     '<i class="fa-regular fa-bookmark"></i>'; 
+    // html += `
+    //     <div class="recipe-fav">
+    //         ${bookmarkIcon}
+    //     </div>
+    // `;
 
     mealDetailsContent.innerHTML = html;
     mealDetailsContent.parentElement.classList.add('showRecipe');

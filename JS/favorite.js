@@ -19,7 +19,6 @@ function addFavouriteButtons() {
         const mealName = item.querySelector('.meal-name h3').innerText;
         const mealImg = item.querySelector('.meal-img img').src;
         const favBtn = item.querySelector('.fav-btn'); 
-        // ...
         favBtn.addEventListener('click', function() { 
             toggleFavourite(mealId, favBtn, mealName, mealImg); 
         }); 
@@ -67,7 +66,7 @@ function removeFavorite() {
 function getRemoveAll(){
     let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
     localStorage.clear('favourites', JSON.stringify(favourites));
-    loadFavourites();
+    loadFavourites();liog
 }
 function toggleFavourite(mealId, button) { 
     let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
@@ -112,7 +111,6 @@ function getMealList(){
         addFavouriteButtons();
     });
 }
-
 
 function getMealRecipe(e){
     e.preventDefault();
